@@ -1,9 +1,9 @@
+import Loader from "@shared/components/ui/loader/loader";
+
 export default function Home() {
   return (
     <div>
-      <h1>
-        Hola mundo!
-      </h1>
+      <Loader />
     </div>
   )
 }
