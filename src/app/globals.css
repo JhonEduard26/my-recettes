@@ -1,0 +1,63 @@
+@property --primaryColor {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ff6b6b;
+}
+
+@property --secondaryColor {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #4ecdc4;
+}
+
+@property --background-light {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #f7f7f7;
+}
+
+@property --background-white {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ffffff;
+}
+
+@property --text-dark {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #2d3436;
+}
+
+@property --text-gray {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #636e72;
+}
+
+@property --accent-yellow {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ffd93d;
+}
+
+@property --accent-green {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #6bcb77;
+}
+
+@property --shadow-sm {
+  syntax: '<shadow>';
+  inherits: false;
+  initial-value: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@property --shadow-md {
+  syntax: '<shadow>';
+  inherits: false;
+  initial-value: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans Variable', sans-serif;
+}
