@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import '@fontsource-variable/plus-jakarta-sans';
-import './normalize.css'
-import './globals.css'
+import '@fontsource-variable/plus-jakarta-sans'
+import '@styles/normalize.css'
+import '@styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'My Recettes',

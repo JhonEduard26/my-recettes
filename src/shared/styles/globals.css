@@ -22,6 +22,12 @@
   initial-value: #ffffff;
 }
 
+@property --background-gray {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #eee;
+}
+
 @property --text-dark {
   syntax: '<color>';
   inherits: false;
@@ -63,4 +69,9 @@ body {
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
   margin: 0;
   font-size: 1.6rem;
+}
+
+.sectionContainer {
+  padding-inline: 2rem;
+  padding-block: 2rem;
 }

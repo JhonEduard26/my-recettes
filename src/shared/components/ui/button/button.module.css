@@ -1,0 +1,15 @@
+.button {
+  padding-inline: 0.8rem;
+  padding-block: 1.2rem;
+  background: var(--primaryColor);
+  color: white;
+  border: 0;
+  font-weight: 600;
+}
+.button:focus-visible {
+  outline-color: var(--primaryColor);
+}
+
+.rounded {
+  border-radius: 3.2rem;
+}
