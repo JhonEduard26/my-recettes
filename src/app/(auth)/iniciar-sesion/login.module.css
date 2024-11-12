@@ -1,0 +1,28 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  row-gap: 4rem;
+  padding-inline: 2rem;
+  padding-block: 3.6rem;
+  min-height: 100dvh;
+}
+
+.title {
+  text-align: center;
+}
+
+.title p {
+  color: var(--text-gray);
+  font-size: var(--smallSize);
+}
+
+.ancle {
+  text-align: center;
+  font-size: var(--smallerSize);
+}
+
+.ancle a {
+  color: var(--primaryColor);
+  font-weight: 600;
+}

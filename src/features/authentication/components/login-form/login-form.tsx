@@ -4,13 +4,8 @@ import styles from './login-form.module.css'
 export const LoginForm = () => {
   return (
     <form className={`${styles.form} ${styles.card}`} action="">
-      <div className={styles.titleContent}>
-        <h2>Iniciar sesión</h2>
-        <p>Bienvenido de vuelta</p>
-      </div>
-
       <div className={styles.inputContainer}>
-        <label htmlFor="">Email</label>
+        <label htmlFor="">Correo electrónico</label>
         <InputText placeholder="ejemplo@gmail.com" />
       </div>
       <div className={styles.inputContainer}>

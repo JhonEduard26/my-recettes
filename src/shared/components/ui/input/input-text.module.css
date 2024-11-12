@@ -1,9 +1,10 @@
 .input {
   border-radius: 0.4rem;
   border: 0;
-  background: var(--background-gray);
-  padding-inline: 0.6rem;
+  padding-inline: 0.8rem;
   padding-block: 1.2rem;
+  line-height: normal;
+  background: var(--background-gray);
 }
 
 .input:focus-visible {

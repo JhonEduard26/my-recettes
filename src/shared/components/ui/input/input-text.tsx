@@ -6,5 +6,7 @@ interface Props {
 }
 
 export const InputText = ({ placeholder = '', type = 'text' }: Props) => {
-  return <input className={styles.input} type={type} placeholder={placeholder} />
+  return (
+    <input className={styles.input} type={type} placeholder={placeholder} />
+  )
 }

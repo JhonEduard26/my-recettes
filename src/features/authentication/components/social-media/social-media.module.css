@@ -1,0 +1,39 @@
+.AppsContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3.2rem;
+}
+
+.AppTitleContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+  padding-inline: 6rem;
+}
+
+.AppTitleContainer div {
+  width: 100%;
+  height: 1px;
+  background: lightgray;
+}
+
+.AppTitle {
+  text-wrap: nowrap;
+  text-align: center;
+  font-size: var(--smallerSize);
+  color: var(--text-gray);
+}
+
+.AppContainer {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.6rem;
+}
+
+.App {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+}
