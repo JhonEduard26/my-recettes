@@ -25,7 +25,7 @@ export const RegisterForm = () => {
 
       <div className={styles.inputContainer}>
         <label htmlFor="password">Contraseña</label>
-        <InputText name="password" placeholder="**********" type="password" />
+        <InputText name="password" placeholder="**********" type="password" defaultValue="Cebolla26*" />
         {state?.errors?.password && (
           <div>
             <span>La contraseña debe contener:</span>

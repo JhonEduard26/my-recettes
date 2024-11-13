@@ -1,0 +1,9 @@
+services:
+  sqlite:
+    image: nouchka/sqlite3
+    container_name: sqlite_container
+    volumes:
+      - ./data:/data
+    command: sqlite3 /data/my_recettes_db.db
+    stdin_open: true
+    tty: true

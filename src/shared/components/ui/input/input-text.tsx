@@ -4,12 +4,15 @@ interface Props {
   name: string
   placeholder?: string
   type?: 'text' | 'password'
+  //TODO: REMOVE THIS AFTER
+  defaultValue?: string
 }
 
 export const InputText = ({
   name,
   placeholder = '',
   type = 'text',
+  defaultValue,
 }: Readonly<Props>) => {
   return (
     <input
@@ -18,6 +21,7 @@ export const InputText = ({
       className={styles.input}
       type={type}
       placeholder={placeholder}
+      defaultValue={defaultValue}
     />
   )
 }

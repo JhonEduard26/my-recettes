@@ -54,3 +54,8 @@ export type SignupFormState =
       message?: string
     }
   | undefined
+
+export type SessionPayload = {
+  userId: string
+  expiresAt: Date
+}
