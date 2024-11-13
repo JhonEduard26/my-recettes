@@ -12,8 +12,7 @@ export default function RegisterPage() {
       <div className={styles.title}>
         <h2>Crea una cuenta</h2>
         <p>
-          Completa el siguiente formulario o registrate con tu red social
-          preferida
+          Completa el siguiente formulario o registrate con una red social
         </p>
       </div>
       <RegisterForm />

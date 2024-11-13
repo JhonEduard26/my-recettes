@@ -10,3 +10,7 @@
   row-gap: 0.8rem;
   font-size: var(--smallSize);
 }
+
+.inputContainer:has(span) input {
+  outline: 2px solid var(--errorText);
+}

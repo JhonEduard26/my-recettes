@@ -10,6 +10,24 @@
   initial-value: #4ecdc4;
 }
 
+@property --hoverBgColor {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #f83b3b;
+}
+
+@property --activeBgColor {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #c11414;
+}
+
+@property --disabledBgColor {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ffe1e1;
+}
+
 @property --background-light {
   syntax: '<color>';
   inherits: false;
@@ -50,6 +68,12 @@
   syntax: '<color>';
   inherits: false;
   initial-value: #6bcb77;
+}
+
+@property --errorText {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ff2b2b;
 }
 
 :root {

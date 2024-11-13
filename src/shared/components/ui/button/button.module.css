@@ -1,13 +1,30 @@
 .button {
+  cursor: pointer;
   padding-inline: 0.8rem;
   padding-block: 1.6rem;
   background: var(--primaryColor);
   color: white;
   border: 0;
   font-weight: 600;
+  transition: background 400ms;
 }
+
+.button:hover {
+  background: var(--hoverBgColor);
+}
+
+.button:active {
+  background: var(--activeBgColor);
+}
+
 .button:focus-visible {
   outline-color: var(--accent-yellow);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  background: var(--disabledBgColor);
+  color: var(--primaryColor);
 }
 
 .rounded {

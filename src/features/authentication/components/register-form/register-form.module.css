@@ -10,3 +10,27 @@
   row-gap: 0.8rem;
   font-size: var(--smallSize);
 }
+
+.inputContainer:has(span) input {
+  outline: 2px solid var(--errorText);
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+  font-size: var(--smallSize);
+}
+
+.labelContainer {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+}
+
+.labelContainer input {
+  width: 1.6rem;
+  height: 1.6rem;
+  accent-color: var(--primaryColor);
+}
