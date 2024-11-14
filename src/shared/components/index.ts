@@ -1,3 +1,6 @@
 export { Button } from './ui/button/button'
+export { ButtonOutline } from './ui/button-outline/button-outline'
+export { Header } from './layout/header/header'
 export { InputText } from './ui/input/input-text'
 export { Loader } from './ui/loader/loader'
+export { SearchInput } from './ui/search-input/search-input'

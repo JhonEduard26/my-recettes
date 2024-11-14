@@ -1,0 +1,53 @@
+.headerBg {
+  padding-inline: 2rem;
+  padding-block: 2.4rem;
+  background-image: linear-gradient(
+    to right in oklab,
+    oklch(64% 0.22 26.26) 0%,
+    70%,
+    oklch(71% 0.18 22.8) 100%
+  );
+}
+
+.headerInfoContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+  padding-block: 2rem;
+}
+
+.headerProfileImg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.headerWelcomeText {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  margin-inline-end: auto;
+  color: white;
+}
+
+.headerName {
+  font-weight: 600;
+}
+
+.headerDescription {
+  font-weight: 200;
+}
+
+.headerButton {
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--background-light);
+}
+
+.headerButton:hover {
+  background: var(--background-gray);
+}

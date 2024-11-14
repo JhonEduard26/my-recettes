@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  padding-inline: 1.2rem;
+  padding-block: 1.2rem;
+  border-radius: .8rem;
+  background: var(--background-light);
+  color: var(--primaryColor);
+}
+
+.container:has(.input:focus-visible) {
+  outline: 2px solid var(--accentYellow);
+}
+
+.input {
+  flex: 1;
+  padding-inline: 0.8rem;
+  border: 0;
+  background: transparent;
+  outline: none;
+}

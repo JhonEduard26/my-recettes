@@ -1,3 +1,6 @@
+export { InfoIcon } from './Info'
+export { BellIcon } from './Bell'
 export { FacebookIcon } from './Facebook'
 export { GithubIcon } from './Github'
 export { GoogleIcon } from './Google'
+export { SearchIcon } from './Search'

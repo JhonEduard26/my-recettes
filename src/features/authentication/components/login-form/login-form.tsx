@@ -5,12 +5,19 @@ import { useActionState } from 'react'
 import { Button, InputText } from '@shared/components'
 import { login } from '@actions/auth'
 import styles from './login-form.module.css'
+import { InfoIcon } from '@shared/icons'
 
 export const LoginForm = () => {
   const [state, action, isPending] = useActionState(login, undefined)
 
   return (
     <form className={`${styles.form} ${styles.card}`} action={action}>
+      {state?.errorMessage && (
+        <div className={styles.errorMessage}>
+          <InfoIcon width={28} height={28} />
+          <span>{state.errorMessage}</span>
+        </div>
+      )}
       <div className={styles.inputContainer}>
         <label htmlFor="email">Correo electrónico</label>
         <InputText name="email" placeholder="ejemplo@gmail.com" />
@@ -21,7 +28,7 @@ export const LoginForm = () => {
         <label htmlFor="password">Contraseña</label>
         <InputText name="password" placeholder="**********" type="password" />
         {state?.errors?.password && (
-          <div >
+          <div>
             <span>La contraseña debe contener:</span>
             <ul>
               {state.errors.password.map((error) => (

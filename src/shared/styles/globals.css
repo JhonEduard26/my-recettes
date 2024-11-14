@@ -58,7 +58,7 @@
   initial-value: #636e72;
 }
 
-@property --accent-yellow {
+@property --accentYellow {
   syntax: '<color>';
   inherits: false;
   initial-value: #ffd93d;

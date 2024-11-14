@@ -1,7 +1,14 @@
+import { Header } from '@shared/components'
+
 export default function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <main>{children}</main>
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
+  )
 }

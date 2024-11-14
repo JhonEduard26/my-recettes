@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto'
 import bcrypt from 'bcryptjs'
 
 import db from '@lib/sqlite'
+import { UserDB } from '@core/types/user'
 
 export const initializeDb = async (): Promise<void> => {
   try {
@@ -23,7 +24,7 @@ export const initializeDb = async (): Promise<void> => {
 export const seedDb = async (): Promise<string> => {
   try {
     const insert = db.prepare(
-      'INSERT INTO users (id, email, name, password) VALUES (@name, @age)',
+      'INSERT INTO users (id, email, name, password) VALUES (@id, @email, @name, @password)',
     )
 
     const insertMany = db.transaction((users) => {
@@ -35,19 +36,19 @@ export const seedDb = async (): Promise<string> => {
         id: randomUUID(),
         name: 'John Doe',
         email: 'john@mail.com',
-        password: await bcrypt.hash('12345678', 10),
+        password: await bcrypt.hash('A123456*', 10),
       },
       {
         id: randomUUID(),
         name: 'Jane Doe',
         email: 'jane@mail.com',
-        password: await bcrypt.hash('12345678', 10),
+        password: await bcrypt.hash('A123456*', 10),
       },
       {
         id: randomUUID(),
         name: 'Alice Doe',
         email: 'alice@mail.com',
-        password: await bcrypt.hash('12345678', 10),
+        password: await bcrypt.hash('A123456*', 10),
       },
     ])
 
@@ -70,6 +71,13 @@ export const deleteAllUsers = async (): Promise<string> => {
   }
 }
 
-export const getUserByEmail = async (email: string): Promise<void> => {
-  
+export const getUserByEmail = async (email: string): Promise<UserDB | null> => {
+  try {
+    const stmt = db.prepare('SELECT * FROM users WHERE email = ?')
+    const user = stmt.get(email) as UserDB
+    return user
+  } catch (error) {
+    console.log('Failed to get user by email', error)
+    return null
+  }
 }

@@ -12,14 +12,14 @@ import {
   SignupFormState,
 } from '@lib/definitions'
 import { createSession } from '@lib/session'
-import { initializeDb } from '@lib/sqlite/statements'
+import { getUserByEmail } from '@lib/sqlite/statements'
 import db from '@lib/sqlite'
 import type { UserDB } from '@core/types/user'
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export const login = async (state: LoginFormState, formData: FormData) => {
-  await sleep(1500)
+  await sleep(1000)
 
   const validateFields = LoginFormSchema.safeParse({
     email: formData.get('email'),
@@ -32,12 +32,30 @@ export const login = async (state: LoginFormState, formData: FormData) => {
     }
   }
 
-  return undefined
+  const { email, password } = validateFields.data
+
+  const user = await getUserByEmail(email)
+
+  if (!user) {
+    return {
+      errorMessage: 'Credenciales incorrectas',
+    }
+  }
+
+  const validPassword = await bcrypt.compare(password, user.password)
+
+  if (!validPassword) {
+    return {
+      errorMessage: 'Credenciales incorrectas',
+    }
+  }
+
+  await createSession(user.id)
+  redirect('/app')
 }
 
 export const signup = async (state: SignupFormState, formData: FormData) => {
-  await sleep(1500)
-  await initializeDb()
+  await sleep(1000)
 
   const validateFields = SignupFormSchema.safeParse({
     name: formData.get('names'),
@@ -56,13 +74,13 @@ export const signup = async (state: SignupFormState, formData: FormData) => {
   const hashedPassword = await bcrypt.hash(password, 10)
 
   const id = randomUUID()
-  const data = db.prepare('INSERT INTO users (id, name, email, password) VALUES (?, ?, ?, ?)')
+  const data = db.prepare(
+    'INSERT INTO users (id, name, email, password) VALUES (?, ?, ?, ?)',
+  )
   data.run(id, name, email, hashedPassword)
-  
+
   const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id) as UserDB
 
   await createSession(user.id)
-  redirect('/')
-
-  return undefined
+  redirect('/app')
 }
