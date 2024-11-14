@@ -1,0 +1,29 @@
+.container {
+  padding-block-end: 2rem;
+}
+
+.categoryList {
+  display: flex;
+  column-gap: 1.2rem;
+  padding-inline-start: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primaryColor) var(--background-white);
+}
+
+.categoryList li {
+  padding-block-end: 1.2rem;
+}
+
+.ship {
+  display: inline-block;
+  min-width: 120px;
+  background: var(--primaryColor);
+  padding-inline: 1.6rem;
+  padding-block: 0.8rem;
+  border-radius: 3.2rem;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}

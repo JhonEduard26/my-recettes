@@ -2,14 +2,14 @@ import styles from './button.module.css'
 
 interface Props {
   children: React.ReactNode
-  type: 'button' | 'submit'
-  isRounded?: boolean
   isDisabled?: boolean
+  isRounded?: boolean
+  type?: 'button' | 'submit'
 }
 
 export const Button = ({
   children,
-  type,
+  type = 'button',
   isRounded,
   isDisabled = false,
 }: Props) => {

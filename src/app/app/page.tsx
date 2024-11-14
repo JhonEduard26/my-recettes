@@ -1,12 +1,13 @@
+import { CategoryList } from '@features/recipe-management/components'
 import styles from './page.module.css'
+import { getAllCategories } from '@lib/sqlite/statements'
 
-export default function AppPage() {
+export default async function AppPage() {
+  const categories = await getAllCategories()
+
   return (
     <section className={styles.mainSection}>
-      <h2>Página principal</h2>
-      <p>
-        Datos del usuario
-      </p>
+      <CategoryList categories={categories} />
     </section>
   )
 }

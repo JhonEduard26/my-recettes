@@ -61,3 +61,13 @@ export const deleteSession = async () => {
   const cookieStore = await cookies()
   cookieStore.delete('session')
 }
+
+export const getSession = async () => {
+  const cookieStore = await cookies()
+  const session = cookieStore.get('session')?.value
+
+  if (!session) return null
+
+  const payload = await decrypt(session)
+  return payload
+}

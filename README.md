@@ -24,3 +24,26 @@
 - Sistema de favoritos
 - Comentarios y valoraciones
 - Subida de imágenes
+
+---
+
+### Como iniciar
+
+1. Instalar dependencias e iniciar servidor de desarrollo
+
+```
+  pnpm install
+  pnpm dev
+```
+
+2. Crear las tablas
+
+```
+localhost:3000/api/init
+```
+
+3. Hacer seed
+
+```
+localhost:3000/api/seed
+```

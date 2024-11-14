@@ -1,13 +1,16 @@
+import { getCurrentUser } from '@lib/sqlite/statements'
 import { Header } from '@shared/components'
 
-export default function AppLayout({
+export default async function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const currentUser = await getCurrentUser()
+
   return (
     <>
-      <Header />
+      <Header currentUser={currentUser} />
       <main>{children}</main>
     </>
   )

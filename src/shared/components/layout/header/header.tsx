@@ -1,8 +1,9 @@
 import { BellIcon } from '@shared/icons'
 import styles from './header.module.css'
 import { SearchInput } from '@shared/components'
+import { UserDB } from '@core/types/user'
 
-export const Header = () => {
+export const Header = ({ currentUser = null }: { currentUser?: UserDB | null }) => {
   return (
     <section className={styles.headerBg}>
       <div className={styles.headerInfoContainer}>
@@ -14,7 +15,7 @@ export const Header = () => {
           height={52}
         />
         <div className={styles.headerWelcomeText}>
-          <span className={styles.headerName}>Hola, user!</span>
+          <span className={styles.headerName}>Hola, {currentUser?.name}!</span>
           <span className={styles.headerDescription}>
             ¿Qué deseas hacer hoy?
           </span>

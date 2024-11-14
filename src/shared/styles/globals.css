@@ -93,6 +93,7 @@ body {
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
   margin: 0;
   font-size: 1.6rem;
+  overflow-x: hidden;
 }
 
 .sectionContainer {

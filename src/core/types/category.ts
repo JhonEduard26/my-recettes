@@ -1,8 +1,7 @@
-export interface UserDB {
+export interface CategoryDB {
   id: string
-  email: string
-  password: string
   name: string
+  description: string
   created_at: string
   updated_at: string
 }
