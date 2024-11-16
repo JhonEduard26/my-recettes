@@ -1,0 +1,96 @@
+.popularCard {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 260px;
+  max-width: 320px;
+  margin-block: 2rem;
+  scroll-snap-align: center;
+  border-radius: 1.6rem;
+  transition: outline 300ms ease-in-out;
+  outline: 2px solid transparent;
+}
+
+.popularCard:hover {
+  outline-color: var(--accentYellow);
+}
+
+.recipeImg {
+  height: 180px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.reviews {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  padding-inline: 0.8rem;
+  padding-block: 0.4rem;
+  border-radius: 3.2rem;
+  background: var(--background-white);
+  font-size: var(--smallSize);
+  font-weight: 600;
+  color: var(--accentYellow);
+}
+
+.favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--background-white);
+  color: var(--text-gray);
+  transition: color 300ms ease-in-out;
+}
+
+.favorite:hover {
+  color: var(--primaryColor);
+}
+
+.reviewsText {
+  color: var(--text-dark);
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+  padding-inline: 1.2rem;
+  padding-block: 0.8rem;
+  background: var(--background-gray);
+}
+
+.recipeContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  font-size: var(--smallSize);
+  color: var(--primaryColor);
+}
+
+.recipeContainer span {
+  color: var(--text-gray);
+}
+
+.recipeContainer span:not(:last-child)::after {
+  content: '•';
+  color: var(--text-gray);
+  margin-inline: 0.4rem;
+}
+
+.recipeName {
+  font-weight: 600;
+}

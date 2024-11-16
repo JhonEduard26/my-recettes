@@ -1,8 +1,8 @@
-import { deleteAllUsers, seedDb } from '@lib/sqlite/statements'
+import { deleteAllData, seedDb } from '@lib/sqlite/statements'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  await deleteAllUsers()
+  await deleteAllData()
   const response = await seedDb()
   return NextResponse.json({ message: response })
 }

@@ -1,49 +1,37 @@
-import { randomUUID } from 'crypto'
-import bcrypt from 'bcryptjs'
-
-import db from '@lib/sqlite'
-import { UserDB } from '@core/types/user'
+import { categories, recipes, reviews, users } from './data'
 import { getSession } from '@lib/session'
-import { CategoryDB } from '@core/types/category'
+import { TABLE_SCHEMAS } from './schemas'
+import db from '@lib/sqlite'
+import type { CategoryDB } from '@core/types/category'
+import type { RecipeDB } from '@core/types/recipe'
+import type { ReviewDB } from '@core/types/review'
+import type { UserDB } from '@core/types/user'
+
+const dropTable = (tableName: string) => {
+  try {
+    db.prepare(`DROP TABLE IF EXISTS ${tableName}`).run()
+  } catch (error) {
+    throw new Error(`Failed to drop table: ${error}`)
+  }
+}
+
+const createTable = async (schema: string) => {
+  try {
+    db.prepare(schema).run()
+  } catch (error) {
+    throw new Error(`Failed to create table: ${error}`)
+  }
+}
 
 export const initializeDb = async (): Promise<string> => {
   try {
-    db.prepare(
-      `
-        DROP TABLE IF EXISTS users;
-      `,
-    ).run()
+    for (const table of Object.keys(TABLE_SCHEMAS)) {
+      dropTable(table)
+    }
 
-    db.prepare(
-      `
-        DROP TABLE IF EXISTS categories;
-      `,
-    ).run()
-
-    db.prepare(
-      `
-        CREATE TABLE IF NOT EXISTS users (
-          id TEXT PRIMARY KEY,
-          email TEXT UNIQUE NOT NULL,
-          name TEXT NOT NULL,
-          password TEXT NOT NULL,
-          created_at TEXT NOT NULL,
-          updated_at TEXT NOT NULL
-        )
-      `,
-    ).run()
-
-    db.prepare(
-      `
-        CREATE TABLE IF NOT EXISTS categories (
-          id TEXT PRIMARY KEY,
-          name TEXT NOT NULL,
-          description TEXT NOT NULL,
-          created_at TEXT NOT NULL,
-          updated_at TEXT NOT NULL
-        )
-      `,
-    ).run()
+    for (const schema of Object.values(TABLE_SCHEMAS)) {
+      createTable(schema)
+    }
 
     return 'Database initialized successfully'
   } catch (error) {
@@ -65,32 +53,7 @@ export const seedDb = async (): Promise<string> => {
       for (const user of users) insertUsers.run(user)
     })
 
-    insertManyUsers([
-      {
-        id: randomUUID(),
-        name: 'John Doe',
-        email: 'john@mail.com',
-        password: await bcrypt.hash('A123456*', 10),
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-      {
-        id: randomUUID(),
-        name: 'Jane Doe',
-        email: 'jane@mail.com',
-        password: await bcrypt.hash('A123456*', 10),
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-      {
-        id: randomUUID(),
-        name: 'Alice Doe',
-        email: 'alice@mail.com',
-        password: await bcrypt.hash('A123456*', 10),
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-    ])
+    insertManyUsers(users)
 
     const insertCategories = db.prepare(
       `
@@ -103,29 +66,35 @@ export const seedDb = async (): Promise<string> => {
       for (const category of categories) insertCategories.run(category)
     })
 
-    insertManyCategories([
-      {
-        id: randomUUID(),
-        name: 'Desayuno',
-        description: 'Recetas para el desayuno',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-      {
-        id: randomUUID(),
-        name: 'Almuerzo',
-        description: 'Recetas para el almuerzo',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-      {
-        id: randomUUID(),
-        name: 'Cena',
-        description: 'Recetas para la cena',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-    ])
+    insertManyCategories(categories)
+
+    const insertRecipes = db.prepare(
+      `
+        INSERT INTO recipes (id, name, description, difficulty, calories, cook_time, image_url, created_at, updated_at, user_id, category_id)
+        VALUES (@id, @name, @description, @difficulty, @calories, @cook_time,  @image_url,  @created_at, @updated_at, @user_id, @category_id)
+      `,
+    )
+
+    const insertManyRecipes = db.transaction((recipes: RecipeDB[]) => {
+      for (const recipe of recipes) insertRecipes.run(recipe)
+    })
+
+    insertManyRecipes(recipes)
+
+    // Reviews
+
+    const insertReviews = db.prepare(
+      `
+        INSERT INTO reviews (id, rating, comment, created_at, updated_at, user_id, recipe_id)
+        VALUES (@id, @rating, @comment, @created_at, @updated_at, @user_id, @recipe_id)
+      `,
+    )
+
+    const insertManyReviews = db.transaction((reviews: ReviewDB[]) => {
+      for (const review of reviews) insertReviews.run(review)
+    })
+
+    insertManyReviews(reviews)
 
     return 'Database seeded successfully'
   } catch (error) {
@@ -134,11 +103,14 @@ export const seedDb = async (): Promise<string> => {
   }
 }
 
-export const deleteAllUsers = async (): Promise<string> => {
+export const deleteAllData = async (): Promise<string> => {
   try {
-    const stmt = db.prepare('DELETE FROM users')
-    stmt.run()
+    const tablesToDelete = ['reviews', 'recipes', 'users', 'categories']
 
+    for (const table of tablesToDelete) {
+      db.prepare(`DELETE FROM ${table}`).run()
+    }
+  
     return 'All users deleted successfully'
   } catch (error) {
     console.log('Failed to delete all users', error)
@@ -174,6 +146,17 @@ export const getAllCategories = async (): Promise<CategoryDB[]> => {
     return categories
   } catch (error) {
     console.log('Failed to get all categories', error)
+    return []
+  }
+}
+
+export const getPopularRecipes = async (): Promise<RecipeDB[]> => {
+  try {
+    const stmt = db.prepare('SELECT * FROM recipes')
+    const recipes = stmt.all() as RecipeDB[]
+    return recipes
+  } catch (error) {
+    console.log('Failed to get popular recipes', error)
     return []
   }
 }
