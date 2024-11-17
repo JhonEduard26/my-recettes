@@ -5,6 +5,7 @@ import styles from './page.module.css'
 export default async function AppPage() {
   const categories = await getAllCategories()
   const recipes = await getPopularRecipes()
+  console.log("🚀 ~ AppPage ~ recipes:", recipes)
 
   return (
     <section className={styles.mainSection}>

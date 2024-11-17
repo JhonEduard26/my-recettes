@@ -1,9 +1,9 @@
 import styles from './popular-recipes.module.css'
 import { RecipeCard } from '../recipe-card/recipe-card'
-import type { RecipeDB } from '@core/types/recipe'
+import type { RecipeWithUserDB } from '@core/types/recipe'
 
 interface Props {
-  popular: RecipeDB[]
+  popular: RecipeWithUserDB[]
 }
 
 export const PopularRecipes = ({ popular = [] }: Readonly<Props>) => {

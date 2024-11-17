@@ -3,7 +3,7 @@ import { getSession } from '@lib/session'
 import { TABLE_SCHEMAS } from './schemas'
 import db from '@lib/sqlite'
 import type { CategoryDB } from '@core/types/category'
-import type { RecipeDB } from '@core/types/recipe'
+import type { RecipeDB, RecipeWithUserDB } from '@core/types/recipe'
 import type { ReviewDB } from '@core/types/review'
 import type { UserDB } from '@core/types/user'
 
@@ -110,7 +110,7 @@ export const deleteAllData = async (): Promise<string> => {
     for (const table of tablesToDelete) {
       db.prepare(`DELETE FROM ${table}`).run()
     }
-  
+
     return 'All users deleted successfully'
   } catch (error) {
     console.log('Failed to delete all users', error)
@@ -150,10 +150,28 @@ export const getAllCategories = async (): Promise<CategoryDB[]> => {
   }
 }
 
-export const getPopularRecipes = async (): Promise<RecipeDB[]> => {
+export const getPopularRecipes = async (): Promise<RecipeWithUserDB[]> => {
   try {
-    const stmt = db.prepare('SELECT * FROM recipes')
-    const recipes = stmt.all() as RecipeDB[]
+    const stmt = db.prepare(`
+        SELECT
+          recipes.*,
+          users.name as chef_name,
+          COALESCE(review_stats.count, 0) as review_count,
+          COALESCE(review_stats.avg_rating, 0) as review_avg
+        FROM recipes
+        LEFT JOIN users
+        ON recipes.user_id = users.id
+        LEFT JOIN (
+          SELECT
+            recipe_id,
+            COUNT(*) as count,
+            AVG(rating) as avg_rating
+          FROM reviews
+          GROUP BY recipe_id
+        ) as review_stats
+        ON recipes.id = review_stats.recipe_id
+    `)
+    const recipes = stmt.all() as RecipeWithUserDB[]
     return recipes
   } catch (error) {
     console.log('Failed to get popular recipes', error)

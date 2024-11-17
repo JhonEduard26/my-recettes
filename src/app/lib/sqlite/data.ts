@@ -111,13 +111,13 @@ export const reviews: ReviewDB[] = [
   },
   {
     id: randomUUID(),
-    rating: 4,
-    comment: 'Buena receta',
+    rating: 2,
+    comment: 'Necesita mejorar receta',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
     user_id: users[1].id,
-    recipe_id: recipes[1].id,
+    recipe_id: recipes[0].id,
   },
   {
     id: randomUUID(),
@@ -127,6 +127,6 @@ export const reviews: ReviewDB[] = [
     updated_at: new Date().toISOString(),
 
     user_id: users[2].id,
-    recipe_id: recipes[2].id,
+    recipe_id: recipes[1].id,
   },
 ]

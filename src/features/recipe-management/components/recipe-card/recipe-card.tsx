@@ -1,9 +1,9 @@
 import { AlarmIcon, HeartIcon, StarIcon } from '@shared/icons'
 import styles from './recipe-card.module.css'
-import type { RecipeDB } from '@core/types/recipe'
+import type { RecipeWithUserDB } from '@core/types/recipe'
 
 interface Props {
-  recipe: RecipeDB
+  recipe: RecipeWithUserDB
 }
 
 export const RecipeCard = ({ recipe }: Readonly<Props>) => {
@@ -16,7 +16,14 @@ export const RecipeCard = ({ recipe }: Readonly<Props>) => {
       />
       <div className={styles.reviews}>
         <StarIcon width={20} height={20} />
-        <span className={styles.reviewsText}> 4.8 (1k+ reviews)</span>
+        <span className={styles.reviewsText}>
+          {recipe.review_avg}{' '}
+          {recipe.review_count === 0
+            ? '(sin reseñas)'
+            : recipe.review_count > 1
+              ? `(${recipe.review_count} reseñas)`
+              : `(${recipe.review_count} reseña)`}
+        </span>
       </div>
 
       <div className={styles.favorite}>
@@ -29,7 +36,7 @@ export const RecipeCard = ({ recipe }: Readonly<Props>) => {
           <AlarmIcon width={20} height={20} />
           <span className={styles.recipeInfo}>{recipe.cook_time}min</span>
           <span>{recipe.difficulty}</span>
-          <span>Por John Doe</span>
+          <span>Por {recipe.chef_name}</span>
         </div>
       </div>
     </div>
