@@ -170,11 +170,23 @@ export const getPopularRecipes = async (): Promise<RecipeWithUserDB[]> => {
           GROUP BY recipe_id
         ) as review_stats
         ON recipes.id = review_stats.recipe_id
+        ORDER BY review_avg DESC
     `)
     const recipes = stmt.all() as RecipeWithUserDB[]
     return recipes
   } catch (error) {
     console.log('Failed to get popular recipes', error)
+    return []
+  }
+}
+
+export const getTopChefs = async (): Promise<UserDB[]> => {
+  try {
+    const stmt = db.prepare(`SELECT * FROM users`)
+    const chefs = stmt.all() as UserDB[]
+    return chefs
+  } catch (error) {
+    console.log('Failed to get top chefs', error)
     return []
   }
 }

@@ -1,0 +1,7 @@
+.chefContainer {
+  overflow-x: auto;
+  display: flex;
+  column-gap: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primaryColor) var(--background-light);
+}

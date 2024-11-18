@@ -31,8 +31,8 @@ export const TABLE_SCHEMAS = {
       updated_at TEXT NOT NULL,
       user_id TEXT NOT NULL,
       category_id TEXT NOT NULL,
-      FOREIGN KEY (user_id) REFERENCES users(id),
-      FOREIGN KEY (category_id) REFERENCES categories(id)
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
   )
   `,
   reviews: `
@@ -44,8 +44,8 @@ export const TABLE_SCHEMAS = {
       updated_at TEXT NOT NULL,
       user_id TEXT NOT NULL,
       recipe_id TEXT NOT NULL,
-      FOREIGN KEY (user_id) REFERENCES users(id),
-      FOREIGN KEY (recipe_id) REFERENCES recipes(id),
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE,
       UNIQUE (user_id, recipe_id)
   )
   `,

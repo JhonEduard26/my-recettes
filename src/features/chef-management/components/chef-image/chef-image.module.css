@@ -1,0 +1,18 @@
+.chefItem {
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+  max-width: 80px;
+  margin-block: 2rem;
+}
+
+.chefImg {
+  padding: 0.4rem;
+  border-radius: 50%;
+}
+
+.chefName {
+  font-weight: 600;
+  text-align: center;
+  text-wrap: nowrap;
+}
