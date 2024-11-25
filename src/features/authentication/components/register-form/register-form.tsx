@@ -13,19 +13,32 @@ export const RegisterForm = () => {
     <form className={styles.form} action={action}>
       <div className={styles.inputContainer}>
         <label htmlFor="names">Nombre completo</label>
-        <InputText name="names" placeholder="Ej. Juan Rodríguez" />
+        <InputText
+          name="names"
+          placeholder="Ej. Juan Rodríguez"
+          defaultValue="Test"
+        />
         {state?.errors?.name && <span>{state.errors.name}</span>}
       </div>
 
       <div className={styles.inputContainer}>
         <label htmlFor="email">Correo electrónico</label>
-        <InputText name="email" placeholder="ejemplo@gmail.com" />
+        <InputText
+          name="email"
+          placeholder="ejemplo@gmail.com"
+          defaultValue="test@mail.com"
+        />
         {state?.errors?.email && <span>{state.errors.email}</span>}
       </div>
 
       <div className={styles.inputContainer}>
         <label htmlFor="password">Contraseña</label>
-        <InputText name="password" placeholder="**********" type="password" defaultValue="Cebolla26*" />
+        <InputText
+          name="password"
+          placeholder="**********"
+          type="password"
+          defaultValue="A123456*"
+        />
         {state?.errors?.password && (
           <div>
             <span>La contraseña debe contener:</span>

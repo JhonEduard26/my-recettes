@@ -1,13 +1,17 @@
 import { randomUUID } from 'crypto'
 import bcrypt from 'bcryptjs'
-import type { ReviewDB } from '@core/types/review'
 
-export const users = [
+import type { RecipeDB } from '@core/types/recipe'
+import type { ReviewDB } from '@core/types/review'
+import type { UserDB } from '@core/types/user'
+
+export const users: UserDB[] = [
   {
     id: randomUUID(),
     name: 'John Doe',
     email: 'john@mail.com',
     password: await bcrypt.hash('A123456*', 10),
+    image_url: 'https://via.placeholder.com/100',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -16,6 +20,7 @@ export const users = [
     name: 'Jane Doe',
     email: 'jane@mail.com',
     password: await bcrypt.hash('A123456*', 10),
+    image_url: 'https://via.placeholder.com/100',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -24,6 +29,7 @@ export const users = [
     name: 'Alice Doe',
     email: 'alice@mail.com',
     password: await bcrypt.hash('A123456*', 10),
+    image_url: 'https://via.placeholder.com/100',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -102,7 +108,7 @@ export const categories = [
   },
 ]
 
-export const recipes = [
+export const recipes: RecipeDB[] = [
   {
     id: randomUUID(),
     name: 'Huevos con jamón',
@@ -144,6 +150,104 @@ export const recipes = [
 
     user_id: users[2].id,
     category_id: categories[2].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Tarta de manzana',
+    description: 'Receta de tarta de manzana',
+    difficulty: 'Fácil',
+    calories: 400,
+    cook_time: 45,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[0].id,
+    category_id: categories[3].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Galletas de chocolate',
+    description: 'Receta de galletas de chocolate',
+    difficulty: 'Media',
+    calories: 200,
+    cook_time: 20,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[1].id,
+    category_id: categories[4].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Batido de fresa',
+    description: 'Receta de batido de fresa',
+    difficulty: 'Fácil',
+    calories: 100,
+    cook_time: 10,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[2].id,
+    category_id: categories[5].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Ensalada César',
+    description: 'Receta de ensalada César',
+    difficulty: 'Fácil',
+    calories: 200,
+    cook_time: 15,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[0].id,
+    category_id: categories[6].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Sopa de verduras',
+    description: 'Receta de sopa de verduras',
+    difficulty: 'Fácil',
+    calories: 200,
+    cook_time: 30,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[1].id,
+    category_id: categories[7].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Hamburguesa vegetariana',
+    description: 'Receta de hamburguesa vegetariana',
+    difficulty: 'Media',
+    calories: 300,
+    cook_time: 30,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[2].id,
+    category_id: categories[8].id,
+  },
+  {
+    id: randomUUID(),
+    name: 'Costillas de cerdo',
+    description: 'Receta de costillas de cerdo',
+    difficulty: 'Media',
+    calories: 300,
+    cook_time: 60,
+    image_url: 'https://via.placeholder.com/150',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+
+    user_id: users[0].id,
+    category_id: categories[9].id,
   },
 ]
 

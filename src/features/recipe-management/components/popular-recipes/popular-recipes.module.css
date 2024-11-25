@@ -1,8 +1,21 @@
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.titleContainer a {
+  font-size: var(--smallSize);
+  text-decoration: none;
+  color: var(--primaryColor);
+}
+
 .popularCarrousel {
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   display: flex;
   column-gap: 2rem;
+  padding-inline: 0.2rem;
   scroll-snap-type: x proximity;
   scrollbar-width: thin;
   scrollbar-color: var(--primaryColor) var(--background-white);

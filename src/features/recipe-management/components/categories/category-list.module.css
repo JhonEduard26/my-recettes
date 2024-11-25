@@ -1,3 +1,15 @@
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.titleContainer a {
+  font-size: var(--smallSize);
+  text-decoration: none;
+  color: var(--primaryColor);
+}
+
 .categoryList {
   display: flex;
   column-gap: 1.2rem;

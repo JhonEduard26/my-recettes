@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { AlarmIcon, HeartIcon, StarIcon } from '@shared/icons'
 import styles from './recipe-card.module.css'
 import type { RecipeWithUserDB } from '@core/types/recipe'
@@ -8,7 +10,7 @@ interface Props {
 
 export const RecipeCard = ({ recipe }: Readonly<Props>) => {
   return (
-    <div className={styles.popularCard}>
+    <Link className={styles.popularCard} href={`/app/receta/${recipe.id}`}>
       <img
         className={styles.recipeImg}
         src={recipe.image_url}
@@ -39,6 +41,6 @@ export const RecipeCard = ({ recipe }: Readonly<Props>) => {
           <span>Por {recipe.chef_name}</span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

@@ -15,6 +15,7 @@ export interface RecipeDB {
 
 export interface RecipeWithUserDB extends RecipeDB {
   chef_name: string
+  chef_image: string
   review_count: number
   review_avg: number
 }

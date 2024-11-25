@@ -6,7 +6,6 @@ interface Props {
 }
 
 export const ChefImage = ({ chef }: Readonly<Props>) => {
-  console.log("🚀 ~ ChefImage ~ chef:", chef)
   return (
     <div className={styles.chefItem}>
       <img

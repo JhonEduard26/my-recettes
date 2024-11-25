@@ -10,6 +10,7 @@
   margin-block: 2rem;
   scroll-snap-align: center;
   border-radius: 1.6rem;
+  text-decoration: none;
   transition: outline 300ms ease-in-out;
   outline: 2px solid transparent;
 }
@@ -93,4 +94,5 @@
 
 .recipeName {
   font-weight: 600;
+  color: var(--text-dark);
 }

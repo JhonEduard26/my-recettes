@@ -12,8 +12,7 @@ import {
   SignupFormState,
 } from '@lib/definitions'
 import { createSession } from '@lib/session'
-import { getUserByEmail } from '@lib/sqlite/statements'
-import db from '@lib/sqlite'
+import { createUser, getUserByEmail } from '@lib/sqlite/statements'
 import type { UserDB } from '@core/types/user'
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -71,16 +70,17 @@ export const signup = async (state: SignupFormState, formData: FormData) => {
   }
 
   const { name, email, password } = validateFields.data
-  const hashedPassword = await bcrypt.hash(password, 10)
 
-  const id = randomUUID()
-  const data = db.prepare(
-    'INSERT INTO users (id, name, email, password) VALUES (?, ?, ?, ?)',
-  )
-  data.run(id, name, email, hashedPassword)
+  const user: UserDB = {
+    id: randomUUID(),
+    name,
+    email,
+    password: await bcrypt.hash(password, 10),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }
 
-  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id) as UserDB
-
+  await createUser(user)
   await createSession(user.id)
   redirect('/app')
 }

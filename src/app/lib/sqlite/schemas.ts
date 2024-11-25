@@ -5,6 +5,7 @@ export const TABLE_SCHEMAS = {
       email TEXT UNIQUE NOT NULL,
       name TEXT NOT NULL,
       password TEXT NOT NULL,
+      image_url TEXT,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
   )

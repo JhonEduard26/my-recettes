@@ -105,7 +105,7 @@ export const seedDb = async (): Promise<string> => {
 
 export const deleteAllData = async (): Promise<string> => {
   try {
-    const tablesToDelete = ['reviews', 'recipes', 'users', 'categories']
+    const tablesToDelete = ['users', 'categories', 'recipes', 'reviews']
 
     for (const table of tablesToDelete) {
       db.prepare(`DELETE FROM ${table}`).run()
@@ -180,6 +180,41 @@ export const getPopularRecipes = async (): Promise<RecipeWithUserDB[]> => {
   }
 }
 
+export const getRecipeById = async (
+  id: string,
+): Promise<RecipeWithUserDB | null> => {
+  try {
+    const stmt = db.prepare(`
+        SELECT
+          recipes.*,
+          users.name as chef_name,
+          users.image_url as chef_image,
+          COALESCE(review_stats.avg_rating, 0) as review_avg
+        FROM recipes
+        LEFT JOIN users
+        ON recipes.user_id = users.id
+        LEFT JOIN (
+          SELECT
+          recipe_id,
+          AVG(rating) as avg_rating
+          FROM reviews
+          GROUP BY recipe_id
+          ) as review_stats
+        ON recipes.id = review_stats.recipe_id
+        WHERE recipes.id = ?
+      `)
+
+    const recipe = stmt.get(id)
+
+    if (!recipe) return null
+
+    return recipe as RecipeWithUserDB
+  } catch (error) {
+    console.log('Failed to get recipe by id', error)
+    return null
+  }
+}
+
 export const getTopChefs = async (): Promise<UserDB[]> => {
   try {
     const stmt = db.prepare(`SELECT * FROM users`)
@@ -188,5 +223,17 @@ export const getTopChefs = async (): Promise<UserDB[]> => {
   } catch (error) {
     console.log('Failed to get top chefs', error)
     return []
+  }
+}
+
+export const createUser = async (user: UserDB): Promise<void> => {
+  try {
+    const stmt = db.prepare(`
+        INSERT INTO users (id, email, name, password, created_at, updated_at)
+        VALUES (@id, @email, @name, @password, @created_at, @updated_at)
+      `)
+    stmt.run(user)
+  } catch (error) {
+    console.log('Failed to create user', error)
   }
 }

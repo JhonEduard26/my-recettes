@@ -1,0 +1,17 @@
+.tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 0.4rem;
+  font-size: var(--smallerSize);
+  text-decoration: none;
+  color: var(--text-gray);
+}
+
+.tab span {
+  text-transform: capitalize;
+}
+
+.active {
+  color: var(--primaryColor);
+}

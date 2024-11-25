@@ -1,0 +1,89 @@
+.recipeImg {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.recipeContainer {
+  padding-inline: 2rem;
+  padding-block-start: 1.2rem;
+  padding-block-end: 6rem;
+  background: var(--background-gray);
+}
+
+.tagContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: var(--text-gray);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+}
+
+.iconContainer svg {
+  color: var(--accentYellow);
+}
+
+.infoContainer h1 {
+  /* margin-block-end: 1.6rem; */
+  font-size: var(--bigSize);
+}
+
+
+.infoCreated {
+  font-weight: 600;
+}
+
+.userInfoContainer {
+  display: flex;
+  column-gap: 1.2rem;
+  padding-block: 1.2rem;
+}
+
+.userImage {
+  border-radius: 50%;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userInfo h2 {
+  margin-block: 0;
+  font-size: var(--baseSize);
+}
+
+.iconsContainer {
+  display: flex;
+  column-gap: 1.2rem;
+  margin-block: 1.6rem;
+}
+
+.iconItem {
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 1.2rem;
+  border: 1px solid var(--text-gray);
+  background: var(--background-white);
+  font-size: var(--smallSize);
+  color: var(--primaryColor);
+}
+
+.iconText {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.timeText {
+  color: var(--text-gray);
+  font-weight: 400;
+}
