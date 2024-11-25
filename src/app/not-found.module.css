@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1.6rem;
+  height: 100dvh;
+  padding: 2rem;
+}
+
+.image {
+  border: 1px solid var(--text-gray);
+  border-radius: 0.8rem;
+}
+
+.link {
+  padding-inline: 0.8rem;
+  padding-block: 0.4rem;
+  border-radius: 0.4rem;
+  background: var(--primaryColor);
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.link:hover {
+  background: var(--hoverBgColor);
+}
