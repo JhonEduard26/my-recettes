@@ -189,10 +189,13 @@ export const getRecipeById = async (
           recipes.*,
           users.name as chef_name,
           users.image_url as chef_image,
+          categories.name as category_name,
           COALESCE(review_stats.avg_rating, 0) as review_avg
         FROM recipes
         LEFT JOIN users
         ON recipes.user_id = users.id
+        LEFT JOIN categories
+        ON recipes.category_id = categories.id
         LEFT JOIN (
           SELECT
           recipe_id,

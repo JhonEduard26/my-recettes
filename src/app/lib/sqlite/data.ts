@@ -11,7 +11,7 @@ export const users: UserDB[] = [
     name: 'John Doe',
     email: 'john@mail.com',
     password: await bcrypt.hash('A123456*', 10),
-    image_url: 'https://via.placeholder.com/100',
+    image_url: 'https://dummyimage.com/100x100',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -20,7 +20,7 @@ export const users: UserDB[] = [
     name: 'Jane Doe',
     email: 'jane@mail.com',
     password: await bcrypt.hash('A123456*', 10),
-    image_url: 'https://via.placeholder.com/100',
+    image_url: 'https://dummyimage.com/100x100',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -29,7 +29,7 @@ export const users: UserDB[] = [
     name: 'Alice Doe',
     email: 'alice@mail.com',
     password: await bcrypt.hash('A123456*', 10),
-    image_url: 'https://via.placeholder.com/100',
+    image_url: 'https://dummyimage.com/100x100',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -116,7 +116,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 200,
     cook_time: 10,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -130,7 +130,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Media',
     calories: 300,
     cook_time: 60,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -144,7 +144,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Difícil',
     calories: 200,
     cook_time: 30,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -158,7 +158,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 400,
     cook_time: 45,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -172,7 +172,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Media',
     calories: 200,
     cook_time: 20,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -186,7 +186,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 100,
     cook_time: 10,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -200,7 +200,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 200,
     cook_time: 15,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -214,7 +214,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 200,
     cook_time: 30,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -228,7 +228,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Media',
     calories: 300,
     cook_time: 30,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -242,7 +242,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Media',
     calories: 300,
     cook_time: 60,
-    image_url: 'https://via.placeholder.com/150',
+    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 

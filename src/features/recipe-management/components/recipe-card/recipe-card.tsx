@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { AlarmIcon, HeartIcon, StarIcon } from '@shared/icons'
 import styles from './recipe-card.module.css'
@@ -11,9 +12,11 @@ interface Props {
 export const RecipeCard = ({ recipe }: Readonly<Props>) => {
   return (
     <Link className={styles.popularCard} href={`/app/receta/${recipe.id}`}>
-      <img
+      <Image
         className={styles.recipeImg}
-        src={recipe.image_url}
+        src={`https://${process.env.NEXT_PUBLIC_AWS_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${recipe.image_url}`}
+        width={320}
+        height={180}
         alt={`Receta de ${recipe.name}`}
       />
       <div className={styles.reviews}>

@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { AlarmIcon, FireIcon, StarIcon } from '@shared/icons'
 import { getPopularRecipes, getRecipeById } from '@lib/sqlite/statements'
 import styles from './page.module.css'
+import Image from 'next/image'
 
 export async function generateStaticParams() {
   const recipes = await getPopularRecipes()
@@ -24,14 +25,23 @@ export default async function RecetaPage({
     redirect('/404')
   }
 
-  const chefImage = recipe.chef_image ?? 'https://via.placeholder.com/100'
+  const chefImage = recipe.chef_image ?? 'https://dummyimage.com/100x100'
+  const recipeImg = recipe.image_url
+    ? `https://${process.env.NEXT_PUBLIC_AWS_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${recipe.image_url}`
+    : 'https://dummyimage.com/320x320'
 
   return (
     <div>
-      <img className={styles.recipeImg} src={recipe.image_url} alt={recipe.name} />
+      <Image
+        className={styles.recipeImg}
+        src={recipeImg}
+        alt={recipe.name}
+        width={320}
+        height={320}
+      />
       <div className={styles.recipeContainer}>
         <div className={styles.tagContainer}>
-          <p>Categoria</p>
+          <p>{recipe.category_name}</p>
           <div className={styles.iconContainer}>
             <StarIcon width={20} height={20} /> <span>{recipe.review_avg}</span>
           </div>

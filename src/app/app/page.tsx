@@ -1,5 +1,3 @@
-import { unstable_cache } from 'next/cache'
-
 import {
   CategoryList,
   PopularRecipes,
@@ -14,23 +12,17 @@ import { Header } from '@shared/components'
 import { TopChefs } from '@features/chef-management/components'
 import styles from './page.module.css'
 
-const getPageData = unstable_cache(
-  async () => {
-    return await Promise.all([
-      getAllCategories(),
-      getTopChefs(),
-      getPopularRecipes(),
-    ])
-  },
-  ['categories', 'chefs', 'recipes'],
-  {
-    revalidate: 3600,
-    tags: ['categories', 'chefs', 'recipes'],
-  },
-)
+const promiseCategories = getAllCategories()
+const promiseChefs = getTopChefs()
+const promiseRecipes = getPopularRecipes()
+
+const [categories, chefs, recipes] = await Promise.all([
+  promiseCategories,
+  promiseChefs,
+  promiseRecipes,
+])
 
 export default async function AppPage() {
-  const [categories, chefs, recipes] = await getPageData()
   const currentUser = await getCurrentUser()
 
   return (

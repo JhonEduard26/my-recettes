@@ -10,7 +10,7 @@ export const ChefImage = ({ chef }: Readonly<Props>) => {
     <div className={styles.chefItem}>
       <img
         className={styles.chefImg}
-        src="https://via.placeholder.com/150"
+        src="https://dummyimage.com/150x150"
         alt="chef"
         width={80}
         height={80}
