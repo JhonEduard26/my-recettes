@@ -64,7 +64,8 @@ export const TabsInfo = ({
         {tab === null && (
           <div>
             <h3>
-              Recetas <span className={styles.accentSpan}>(24)</span>
+              Recetas{' '}
+              <span className={styles.accentSpan}>({recipes.length ?? 0})</span>
             </h3>
             <CategoryList categories={categories} />
             <div className={styles.tabRecipes}>

@@ -89,6 +89,10 @@ html {
   font-size: 62.5%;
 }
 
+html:has(dialog[open][modal-mode="mega"]) {
+  overflow: hidden;
+}
+
 body {
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
   margin: 0;

@@ -158,7 +158,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 400,
     cook_time: 45,
-    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
+    image_url: 'recipes/tarta-de-manzana/tarta-de-manzana.png',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -200,7 +200,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Fácil',
     calories: 200,
     cook_time: 15,
-    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
+    image_url: 'recipes/ensalada-cesar/ensalada-cesar.png',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 
@@ -242,7 +242,7 @@ export const recipes: RecipeDB[] = [
     difficulty: 'Media',
     calories: 300,
     cook_time: 60,
-    image_url: 'recipes/huevos-con-jamon-g668iz257grd/huevos-con-jamon-1.webp',
+    image_url: 'recipes/costillas-de-cerdo/costillas-de-cerdo.png',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
 

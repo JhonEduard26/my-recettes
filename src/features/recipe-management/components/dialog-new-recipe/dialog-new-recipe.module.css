@@ -1,0 +1,64 @@
+.dialog {
+  display: grid;
+  position: fixed;
+  right: 4px;
+  bottom: 84px;
+  left: auto;
+  top: auto;
+  margin: auto;
+  background-color: transparent;
+  border: 0;
+}
+
+.dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dialog[modal-mode='mega']::backdrop {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog {
+  transition: opacity 400ms ease;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 2rem;
+}
+
+.itemContainer {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 1.2rem;
+  margin-inline-end: 0.8rem;
+  color: white;
+  text-decoration: none;
+}
+
+.itemContainer span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primaryColor);
+}
+
+.buttonDialog {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primaryColor);
+  border: 0;
+  color: white;
+  transform: rotate(45deg);
+}

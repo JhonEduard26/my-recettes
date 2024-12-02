@@ -1,9 +1,11 @@
 import { TabsInfo } from '@features/chef-management/components'
 import styles from './page.module.css'
-import { getAllCategories, getPopularRecipes } from '@lib/sqlite/statements'
+import { getAllCategories, getCurrentUser, getRecipesByChefId } from '@lib/sqlite/statements'
+import { DialogNewRecipe, Fab } from '@features/recipe-management/components'
 
 const categories = await getAllCategories()
-const recipes = await getPopularRecipes()
+const currentUser = await getCurrentUser()
+const recipes = await getRecipesByChefId(currentUser?.id ?? '')
 
 export default async function PerfilPage() {
   return (
@@ -27,7 +29,7 @@ export default async function PerfilPage() {
         <span className={styles.role}>Chef</span>
         <div className={styles.counterInfo}>
           <div className={styles.counterItem}>
-            <span className={styles.counterNumber}>24</span>
+            <span className={styles.counterNumber}>{recipes.length ?? 0}</span>
             <span>Recetas</span>
           </div>
           <div className={styles.divider}></div>
@@ -44,6 +46,8 @@ export default async function PerfilPage() {
       </div>
 
       <TabsInfo categories={categories} recipes={recipes} />
+      <DialogNewRecipe />
+      <Fab />
     </section>
   )
 }

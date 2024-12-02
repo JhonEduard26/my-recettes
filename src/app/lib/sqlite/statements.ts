@@ -180,6 +180,40 @@ export const getPopularRecipes = async (): Promise<RecipeWithUserDB[]> => {
   }
 }
 
+export const getRecipesByChefId = async (
+  chefId: string,
+): Promise<RecipeWithUserDB[]> => {
+  try {
+    const stmt = db.prepare(`
+      SELECT
+        recipes.*,
+        users.name as chef_name,
+        COALESCE(review_stats.count, 0) as review_count,
+        COALESCE(review_stats.avg_rating, 0) as review_avg
+      FROM recipes
+      LEFT JOIN users
+      ON recipes.user_id = users.id
+      LEFT JOIN (
+        SELECT
+          recipe_id,
+          COUNT(*) as count,
+          AVG(rating) as avg_rating
+        FROM reviews
+        GROUP BY recipe_id
+      ) as review_stats
+      ON recipes.id = review_stats.recipe_id
+      WHERE recipes.user_id = ?
+      ORDER BY review_avg DESC
+    `)
+
+    const recipes = stmt.all(chefId) as RecipeWithUserDB[]
+    return recipes
+  } catch (error) {
+    console.log('Failed to get recipes by chef id', error)
+    return []
+  }
+}
+
 export const getRecipeById = async (
   id: string,
 ): Promise<RecipeWithUserDB | null> => {
